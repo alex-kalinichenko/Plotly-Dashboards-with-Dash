@@ -5,8 +5,9 @@
 ######
 
 # Perform imports here:
-
-
+import plotly.offline as pyo
+import plotly.graph_objs as go
+import pandas as pd
 
 
 # Create a pandas DataFrame from 2010YumaAZ.csv
@@ -19,13 +20,19 @@ data = []
 
 for day in days:
     # What should go inside this Scatter call?
-    trace = go.Scatter()
+    trace = go.Scatter(
+        x=df['LST_TIME'],
+        y=df[df['DAY'] == day]['T_HR_AVG'],
+        mode='lines',
+        name=day,
+    )
     data.append(trace)
 
 # Define the layout
-
-
-
-
+layout = go.Layout(
+    title='Seven days worth of temperature data'
+)
 
 # Create a fig from data and layout, and plot the fig
+fig = go.Figure(data=data, layout=layout)
+pyo.plot(fig, filename='solution.html')

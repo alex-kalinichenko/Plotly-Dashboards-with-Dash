@@ -31,3 +31,5 @@ layout = go.Layout(
 
 fig = go.Figure(data=traces,layout=layout)
 pyo.plot(fig, filename='line3.html')
+
+print(df2)
